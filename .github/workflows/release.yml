@@ -1,0 +1,16 @@
+name: Shared release flow
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    permissions:
+      contents: write
+      pull-requests: read
+    uses: tseste/release-actions/.github/workflows/release-orchestrator.yml@main
+    with:
+      service_name: sample-service
+      pr_title: ${{ github.event.head_commit.message }}
+      manager_team: release-managers
